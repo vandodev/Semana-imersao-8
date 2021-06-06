@@ -5,25 +5,25 @@ app.use(express.json());
  
 app.get('/usuarios', function (req, res) {
   res.json({
-    err:false,
-    message:"Listar usuários"
+    erro:false,
+    messagem:"Listar usuários"
   })
 });
 
-// Enviar no insomina
-// http://localhost:3000/login
-// {
-//   "usuario":"Evandro",
-//   "senha":"123"
-// }
 
 app.post('/login', function (req, res) {
-  //console.log(req.body);
-  console.log(req.body.usuario);
+  console.log(req.body);
+  if(req.body.usuario === 'Evandro' && req.body.senha === '123'){
+    res.json({
+      erro:false,
+      messagem:"Login válido",
+      dados:req.body
+    });
+  }
   res.json({
-    err:false,
-    message:"Página de login"
-  })
+    erro:true,
+    messagem:"Login ou senha incorreto",
+  });
 });
  
 app.listen(3000, function(){
